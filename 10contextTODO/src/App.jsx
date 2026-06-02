@@ -21,7 +21,7 @@ function App() {
   }
 
   const toggleComplete = (id) => {
-    setTodos((prev) => prev.map((prevTodo) => prevTodo === id ? {...prevTodo, completed: !prevTodo.completed} : prevTodo))
+    setTodos((prev) => prev.map((prevTodo) => prevTodo.id === id ? {...prevTodo, completed: !prevTodo.completed} : prevTodo))
   }
 
   useEffect(() => {
@@ -53,7 +53,7 @@ function App() {
                           key={todo.id}
                           className='w-full'
                           >
-                            <TodoItem />
+                            <TodoItem todo={todo} />
                           </div>
                         ))}
                     </div>
