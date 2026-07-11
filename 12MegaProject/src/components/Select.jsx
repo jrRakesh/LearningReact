@@ -4,7 +4,7 @@ function Select({
     opions,
     label,
     className = '',
-    ...props,
+    ...props
 }, ref) {
     const id = useId()
   return (
