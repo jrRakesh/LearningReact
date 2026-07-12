@@ -12,9 +12,9 @@ export class AuthService {
         this.account = new Account(this.client);
         
     }
-    async createAccount({emali, password, name}){
+    async createAccount({email, password, name}){
         try{
-            const userAccount = await this.account.create(ID.unique(), emali, password, name);
+            const userAccount = await this.account.create(ID.unique(), email, password, name);
             
             if(userAccount){
                 return this.login({email, password});
@@ -39,6 +39,7 @@ export class AuthService {
         try{
             return await this.account.get()
         } catch(error){
+            if(error?.code === 401) return null
             console.log("Appwrite Service :: getCurrentUser:: error :  ", error)
         }
         return null

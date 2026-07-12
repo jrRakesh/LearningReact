@@ -78,7 +78,7 @@ export class Service{
     async getPosts(queries = [Query.equal('status', 'active')])
     {
         try {
-        return await this.databases.listDocument(
+        return await this.databases.listDocuments(
             conf.appwriteDatabaseId,
             conf.appwriteCollectionId,
             queries,
@@ -90,14 +90,14 @@ export class Service{
     }
     async uploadFile(file){
         try {
-            return await this.bucket.createDocument(
+            return await this.bucket.createFile(
                 conf.appwriteBucketId,
                 ID.unique(),
                 file
             )
         } catch (error) {
             console.log("Appwrite service :: fileUpload :: ", error)
-            return flase
+            return false
         }
     }
     async deleteFile(fileId){

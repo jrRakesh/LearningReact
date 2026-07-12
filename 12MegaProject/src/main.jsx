@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
-import { BrowserRouter, createBrowserRouter } from "react-router-dom";
+import { BrowserRouter, createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthLayout, Login, Signup } from "./components/index.js";
 import Home from "./pages/Home.jsx";
 import AllPosts from "./pages/AllPosts.jsx";
@@ -75,7 +75,7 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
-      <App />
+      <RouterProvider router={router} />
     </Provider>
   </StrictMode>,
 );

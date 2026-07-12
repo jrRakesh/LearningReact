@@ -12,10 +12,10 @@ function Signup() {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
 
-  const create = async (data) => {
+  const create = async ({email, password, name}) => {
     setError("");
     try {
-      const userData = await authService.createAccount(data);
+      const userData = await authService.createAccount({email, password, name});
       if (userData) {
         const userData = await authService.getCurrentUser();
         if (userData) dispatch(login(userData));
@@ -30,7 +30,6 @@ function Signup() {
       <div
         className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10 `}
       >
-        \
         <div className="mb-2 flex justify-center">
           <span className="inline-block w-full max-w-25">
             <Logo width="100%" />
@@ -77,6 +76,10 @@ function Signup() {
               placeholder="Enter your passowrd"
               {...register("password", { required: true })}
             />
+            <Button 
+            type="submit" 
+            className="w-full cursor-pointer"
+            >Create Account</Button>
           </div>
         </form>
       </div>
