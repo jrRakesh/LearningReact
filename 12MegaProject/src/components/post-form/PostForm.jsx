@@ -20,10 +20,10 @@ function PostForm({ post }) {
   const submit = async (data) => {
     if (post) {
       const file = data.image[0]
-        ? appwriteService.uploadFile(data.image[0])
+        ? await appwriteService.uploadFile(data.image[0])
         : null;
       if (file) {
-        appwriteService.deleteFile(post.featuredImage);
+        await appwriteService.deleteFile(post.featuredImage);
       }
       const dbPost = await appwriteService.updatePost(post.$id, {
         ...data,
@@ -70,6 +70,8 @@ function PostForm({ post }) {
       subscription.unsubscribe();
     };
   }, [watch, slugTransform, setValue]);
+
+  
 
   return (
     <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
